@@ -29,7 +29,7 @@ function getWeatherCategory(condition: string): WeatherStatus {
 }
 
 export async function getNaverWeeklyWeather(): Promise<any> {
-    const baseUrl = "https://weather.naver.com/today/09740106?cpName=KMA";
+    const baseUrl = "https://weather.naver.com/today/04113122?cpName=KMA";
     const response = await axios.get(baseUrl);
     const match = response.data.match(/"domesticWeeklyFcastList":\s*(\[[^\]]*\])/);
     const domesticWeeklyFcastList = JSON.parse(match[1]);
