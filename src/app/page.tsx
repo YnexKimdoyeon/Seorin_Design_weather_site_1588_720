@@ -261,7 +261,7 @@ export default function Home() {
         </div>
           {/* 나머지 날씨 파트 */}
         <div className="w-[600px] h-[300px] absolute left-[870px] top-[300px] flex flex-row gap-[45px]">
-          {data.slice(3,3+2).map((v, i) => {
+          {data.slice(4,3+2).map((v, i) => {
             return (
               <div key={i} className="w-[150px] flex flex-col relative">
                 {/* 날짜 */}
