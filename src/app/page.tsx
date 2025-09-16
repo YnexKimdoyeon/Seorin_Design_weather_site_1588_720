@@ -260,6 +260,7 @@ export default function Home() {
           );
         })}
           {/* 나머지 날씨 파트 */}
+<<<<<<< HEAD
         {data.slice(4,4+2).map((v, i) => {
           const leftPositions = [i*205, i*195]; // 각 아이템의 개별 위치
           const leftPosition = leftPositions[i];
@@ -269,6 +270,16 @@ export default function Home() {
               <span className="absolute top-[20px] left-[210px] text-[32px] w-[120px] text-center font-[600]">
                 {v.date}
               </span>
+=======
+        <div className="w-[600px] h-[300px] absolute left-[870px] top-[300px] flex flex-row gap-[45px]">
+          {data.slice(4,3+3).map((v, i) => {
+            return (
+              <div key={i} className="w-[150px] flex flex-col relative">
+                {/* 날짜 */}
+                <span className="mt-[20px] text-[32px] w-[120px] left-[132px] absolute top-[110px] text-center font-[600]">
+                  {v.date}
+                </span>
+>>>>>>> 1d6bbb0d1e78a489e08873bac0e9e708ddbfba67
 
               {/* 오전 날씨 아이콘 */}
               <Image
