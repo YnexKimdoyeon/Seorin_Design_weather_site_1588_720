@@ -159,10 +159,10 @@ export default function Home() {
   }
 
   return (
-    <div className="w-[1538px] h-[720px] overflow-x-auto text-white">
+    <div className="w-[720px] h-[1535px] overflow-x-auto text-white">
       {/* 고정된 배경 영역 */}
       <div
-        className="relative w-[1538px] h-[720px]"
+        className="relative w-[720px] h-[1535px]"
         style={{
           backgroundImage: `url(/images/backgrounds/${currentBackground}.png)`,
           backgroundSize: "cover",
@@ -170,145 +170,145 @@ export default function Home() {
         }}
       >
         {/* 위치 */}
-        <span className="absolute text-[37px] left-[229px] top-[47px]">
+        <span className="absolute text-[52px] left-[210px] top-[50px]">
           {pos}
         </span>
         {/* 날짜 */}
-        <span className="absolute text-[32px] left-[219px] top-[249px]">
+        <span className="absolute text-[40px] left-[164px] top-[264px]">
           {date}
         </span>
         {/* 시간 */}
-        <span className="absolute text-[30px] left-[239px] top-[176px]">
+        <span className="absolute text-[36px] left-[209px] top-[194px]">
           {ampm}
         </span>
-        <span className="absolute text-[61px] left-[312px] top-[145px]">
+        <span className="absolute text-[95px] left-[287px] top-[136px]">
           {time}
         </span>
         {/* 현재 날씨 */}
-        <span className="absolute text-[39px] left-[480px] top-[334px]">
+        <span className="absolute text-[43.55px] left-[440px] top-[361px]">
           {data[0].status.cur}
         </span>
         {/* 아이콘 */}
         <Image
-          className="absolute left-[151px] top-[431px]"
+          className="absolute left-[121px] top-[461px]"
           src={weatherConditions[data[0].status.cur].icon || ""}
           alt={data[0].status.cur}
           width={161}
           height={161}
         />
         {/* 현재 온도 */}
-        <span className="absolute left-[406px] top-[443px] text-[83px]">
+        <span className="absolute left-[331px] top-[483px] text-[112px]">
           {data[0].temp.curTemp}
         </span>
         {/* 현재 습도 */}
-        <span className="absolute left-[239px] top-[618px] text-[45px] font-light text-right w-[40px]">
+        <span className="absolute left-[202px] top-[646px] text-[52px] font-light text-right">
           {data[0].hu}
         </span>
         {/* 현재 풍속 */}
-        <span className="absolute left-[500px] top-[618px] text-[45px] font-light text-right w-[40px]">
+        <span className="absolute left-[486px] top-[646px] text-[52px] font-light text-right">
           {data[0].wind}
         </span>
 
         {/* 나머지 날씨 파트 */}
-        <div className="w-[769px] h-[300px] absolute left-[769px] top-[0px] flex flex-row gap-[45px]">
-          {data.slice(1,1+3).map((v, i) => {
-            return (
-              <div key={i} className="w-[150px] flex flex-col relative">
-                {/* 날짜 */}
-                <span className="mt-[20px] text-[32px] w-[120px] left-[132px] absolute top-[110px] text-center font-[600]">
-                  {v.date}
-                </span>
+        {data.slice(1,1+3).map((v, i) => {
+          const leftPositions = [i*200, i*195, i*196]; // 각 아이템의 개별 위치
+          const leftPosition = leftPositions[i];
+          return (
+            <div key={i} className="absolute left-[10px] top-[900px] w-[200px] h-[400px]" style={{left: `${leftPosition}px`}}>
+              {/* 날짜 */}
+              <span className="absolute top-[20px] left-[100px] text-[32px] w-[120px] text-center font-[600]">
+                {v.date}
+              </span>
 
-                {/* 오전 날씨 아이콘 */}
-                <Image
-                  className="self-center mt-[20px] absolute top-[170px] left-[110px]"
-                  src={weatherConditions[data[i + 1].status.am].icon || ""}
-                  alt={data[i + 1].status.am}
-                  width={80}
-                  height={45}
-                />
+              {/* 오전 날씨 아이콘 */}
+              <Image
+                className="absolute top-[80px] left-[80px]"
+                src={weatherConditions[data[i + 1].status.am].icon || ""}
+                alt={data[i + 1].status.am}
+                width={80}
+                height={35}
+              />
 
-                {/* 오후 날씨 아이콘 */}
-                <Image
-                  className="self-center mt-[20px] absolute top-[170px] left-[190px]"
-                  src={weatherConditions[data[i + 1].status.pm].icon || ""}
-                  alt={data[i + 1].status.pm}
-                  width={80}
-                  height={45}
-                />
+              {/* 오후 날씨 아이콘 */}
+              <Image
+                className="absolute top-[80px] left-[165px]"
+                src={weatherConditions[data[i + 1].status.pm].icon || ""}
+                alt={data[i + 1].status.pm}
+                width={80}
+                height={35}
+              />
 
-                {/* 최소 온도 */}
-                <span className="absolute top-[274px] left-[124px] text-[30px] w-[10px] text-center font-[300]">
-                  {v.temp.minTemp}
-                </span>
+              {/* 최소 온도 */}
+              <span className="absolute top-[170px] left-[100px] text-[30px] text-center font-[300]">
+                {v.temp.minTemp}
+              </span>
 
-                <span className="absolute top-[274px] left-[200px] text-[30px] w-[10px] text-center font-[300]">
-                  {v.temp.maxTemp}
-                </span>
+              <span className="absolute top-[170px] left-[175px] text-[30px] text-center font-[300]">
+                {v.temp.maxTemp}
+              </span>
 
-                {/* 습도 */}
-                <span className="absolute top-[325px] left-[150px] text-[24px] self-center w-[100px] text-center">
-                  {v.hu}
-                </span>
+              {/* 습도 */}
+              <span className="absolute top-[220px] left-[150px] text-[24px] text-center">
+                {v.hu}
+              </span>
 
-                {/* 풍속 */}
-                <span className="absolute top-[353px] left-[150px] text-[24px] self-center w-[100px] text-center">
-                  {v.wind}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+              {/* 풍속 */}
+              <span className="absolute top-[245px] left-[160px] text-[24px] text-center">
+                {v.wind}
+              </span>
+            </div>
+          );
+        })}
           {/* 나머지 날씨 파트 */}
-        <div className="w-[600px] h-[300px] absolute left-[870px] top-[300px] flex flex-row gap-[45px]">
-          {data.slice(3,3+2).map((v, i) => {
-            return (
-              <div key={i} className="w-[150px] flex flex-col relative">
-                {/* 날짜 */}
-                <span className="mt-[20px] text-[32px] w-[120px] left-[132px] absolute top-[110px] text-center font-[600]">
-                  {v.date}
-                </span>
+        {data.slice(4,4+2).map((v, i) => {
+          const leftPositions = [i*205, i*195]; // 각 아이템의 개별 위치
+          const leftPosition = leftPositions[i];
+          return (
+            <div key={i} className="absolute left-[150px] top-[1200px] w-[200px] h-[300px]" style={{left: `${leftPosition}px`}}>
+              {/* 날짜 */}
+              <span className="absolute top-[20px] left-[210px] text-[32px] w-[120px] text-center font-[600]">
+                {v.date}
+              </span>
 
-                {/* 오전 날씨 아이콘 */}
-                <Image
-                  className="self-center mt-[20px] absolute top-[170px] left-[110px]"
-                  src={weatherConditions[data[i + 1].status.am].icon || ""}
-                  alt={data[i + 1].status.am}
-                  width={80}
-                  height={45}
-                />
+              {/* 오전 날씨 아이콘 */}
+              <Image
+                className="absolute top-[80px] left-[185px]"
+                src={weatherConditions[data[i + 4].status.am].icon || ""}
+                alt={data[i + 4].status.am}
+                width={80}
+                height={45}
+              />
 
-                {/* 오후 날씨 아이콘 */}
-                <Image
-                  className="self-center mt-[20px] absolute top-[170px] left-[190px]"
-                  src={weatherConditions[data[i + 1].status.pm].icon || ""}
-                  alt={data[i + 1].status.pm}
-                  width={80}
-                  height={45}
-                />
+              {/* 오후 날씨 아이콘 */}
+              <Image
+                className="absolute top-[80px] left-[265px]"
+                src={weatherConditions[data[i + 4].status.pm].icon || ""}
+                alt={data[i + 4].status.pm}
+                width={80}
+                height={45}
+              />
 
-                {/* 최소 온도 */}
-                <span className="absolute top-[274px] left-[124px] text-[30px] w-[10px] text-center font-[300]">
-                  {v.temp.minTemp}
-                </span>
+              {/* 최소 온도 */}
+              <span className="absolute top-[170px] left-[200px] text-[30px] text-center font-[300]">
+                {v.temp.minTemp}
+              </span>
 
-                <span className="absolute top-[274px] left-[200px] text-[30px] w-[10px] text-center font-[300]">
-                  {v.temp.maxTemp}
-                </span>
+              <span className="absolute top-[170px] left-[275px] text-[30px] text-center font-[300]">
+                {v.temp.maxTemp}
+              </span>
 
-                {/* 습도 */}
-                <span className="absolute top-[325px] left-[150px] text-[24px] self-center w-[100px] text-center">
-                  {v.hu}
-                </span>
+              {/* 습도 */}
+              <span className="absolute top-[220px] left-[250px] text-[24px] text-center">
+                {v.hu}
+              </span>
 
-                {/* 풍속 */}
-                <span className="absolute top-[353px] left-[150px] text-[24px] self-center w-[100px] text-center">
-                  {v.wind}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+              {/* 풍속 */}
+              <span className="absolute top-[250px] left-[260px] text-[24px] text-center">
+                {v.wind}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
